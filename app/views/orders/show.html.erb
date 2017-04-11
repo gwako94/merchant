@@ -19,6 +19,7 @@
     <th>Quantity</th>
     <th>Unit Price</th>
     <th>Subtotal</th>
+    <th><%= link_to "Empty Cart", @order, data: { confirm: 'Are you sure?' }, method: :delete %></th>
   </tr>
   <% @order.order_items.each do |item| %>
   <tr>
@@ -26,7 +27,15 @@
     <td><%= item.product.title %></td>
     <td><%= item.quantity %></td>
     <td><%= print_price(item.product.price)%></td>
-    <td><%#= print_price item.subtotal %> </td>
+    <td><%= print_price item.subtotal %> </td>
+    <td><%= link_to 'Remove', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
   <% end %>
+  <tr>
+    <th>Order Total:</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><%=print_price (@order.total)%></td>
+  </tr>
 </table>
