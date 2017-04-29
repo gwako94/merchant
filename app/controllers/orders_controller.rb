@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :confirm]
 
   # GET /orders
   # GET /orders.json
@@ -41,8 +41,8 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1.json
   def update
     respond_to do |format|
-      if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+      if @order.update(order_params.merge(status: 'submitted'))
+        format.html { redirect_to confirm_order_path(@order), notice: 'Order was successfully updated.' }
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit }
@@ -59,6 +59,9 @@ class OrdersController < ApplicationController
       format.html { redirect_to products_url, notice: 'Order was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  def confirm
+    #empty
   end
 
   private

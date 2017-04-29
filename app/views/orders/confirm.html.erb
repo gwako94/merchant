@@ -1,19 +1,7 @@
-<h1>Your Order</h1>
+<h1> Confirm Order</h1>
 <%= form_for @order do |f| %>
 <table>
-  <tr>
-    <th>Customer</th>
-    <td><%= @order.user_id %></td>
-  </tr>
-  <tr>
-    <th>Status:</th>
-    <td><%= @order.status %></td>
-  </tr>
-  <tr>
-    <th>Items:</th>
-    <td><%= @order.order_items.count %></td>
-  </tr>
-  <tr>
+<tr>
     <th>Items</th>
     <th>Title</th>
     <th>Quantity</th>
@@ -29,7 +17,6 @@
     <td><%= print_stock(item.product.stock, item.quantity) %></td>
     <td><%= print_price(item.product.price) %></td>
     <td><%= print_price item.subtotal %> </td>
-    <td><%= link_to 'Remove', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
   <% end %>
   <tr>
@@ -50,5 +37,4 @@
    <td><%= link_to "Empty Cart", @order, data: { confirm: 'Are you sure?' }, method: :delete %></td>
 </tr>
 </table>
-<%= f.submit "Submit Order" %>
 <% end %>
