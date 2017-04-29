@@ -32,7 +32,7 @@
      <%= f.select :address_id, current_user.addresses.collect{|a| [a.to_s, a.id]} %>
    </td>
    <td>
-     <%= link_to "New Address", new_address_path %>
+     <%= link_to "Change Adress", new_address_path %>
    </td>
    <td><%= link_to "Empty Cart", @order, data: { confirm: 'Are you sure?' }, method: :delete %></td>
 </tr>
